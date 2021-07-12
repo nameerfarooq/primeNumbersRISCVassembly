@@ -1,0 +1,28 @@
+li x1,1  #for loop increment
+li x6,1 #for checkin if starting range is 1
+li x2,2 # for checking remainder when divided by 2
+li x3,3 # for checking remainder when divided by 3
+li x4,20 #for checking loop termination
+li x7,0 #for saving sum of all prime numbers from 1-20
+blt x1,x4,loop
+loop:
+beq x1,x6,increment #if n is 1 directly makes an increment 
+beq x1,x2,loop3 #if n is 2 directly makes an increment and adds it to result(as 2 is a prime number) 
+beq x1,x3,loop3#if n is 3 directly makes an increment and adds it to result(as 3 is a prime number)
+rem x5,x1,x2
+bne x5,x0,loop2
+j increment
+loop2:
+rem x8,x1,x3
+bne x8,x0,loop3
+j increment
+loop3:
+add x7,x7,x1
+j increment
+increment:
+addi x1,x1,1
+blt x1,x4,loop
+end: 
+li a0,1 #for printing answer in console
+mv a1,x7 #for printing answer in console
+ecall #for printing answer in console
